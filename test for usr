@@ -1,0 +1,53 @@
+module usr_test;
+
+	// Inputs
+	reg [7:0] data_in;
+	reg clk;
+	reg rst;
+	reg din_left;
+	reg din_right;
+	reg [1:0] opsel;
+
+	// Outputs
+	wire [7:0] data_out;
+
+	// Instantiate the Unit Under Test (UUT)
+	usr uut (
+		.data_in(data_in), 
+		.clk(clk), 
+		.rst(rst), 
+		.din_left(din_left), 
+		.din_right(din_right), 
+		.opsel(opsel), 
+		.data_out(data_out)
+	);
+
+	initial begin
+		// Initialize Inputs
+		data_in = 0;
+		clk = 0;
+		rst = 0;
+		din_left = 0;
+		din_right = 0;
+		opsel = 0;
+
+		// Wait 100 ns for global reset to finish
+		#100;
+        data_in = 101;
+		clk = 1;
+		rst = 1;
+		din_left = 011;
+		din_right = 01011;
+		opsel = 1;
+		#100;
+        data_in = 101;
+		clk = 0;
+		rst = 0;
+		din_left = 011;
+		din_right = 01011;
+		opsel = 0; 
+		// Add stimulus here
+
+	end
+      
+endmodule
